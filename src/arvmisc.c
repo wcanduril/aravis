@@ -1089,6 +1089,7 @@ arv_parse_genicam_url (const char *url, gssize url_length,
 		*size = 0;
 
 	g_return_val_if_fail (url != NULL, FALSE);
+        printf("Debug URL: %s\n, url); 
 
 	/* https://tools.ietf.org/html/rfc3986#appendix-B */
 	regex = g_regex_new ("^(([^:\\/?#]+):)?(\\/\\/([^\\/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?",G_REGEX_CASELESS, 0, NULL);
@@ -1105,6 +1106,9 @@ arv_parse_genicam_url (const char *url, gssize url_length,
 
 	l_scheme = tokens[2][0] != '\0' ? tokens[2] : NULL;
 	l_authority = tokens[4][0] != '\0' ? tokens[4] : NULL;
+
+        printf("Scheme %s\n", l_scheme); 
+        printf("Auth: %s\n", l_authority); 
 
 	if (g_ascii_strcasecmp (l_scheme, "local") == 0) {
 	local_regex = g_regex_new ("(?:\\s*)?(.+);(?:\\s*)?(?:0x)?([0-9:a-f]*);(?:\\s*)?(?:0x)?([0-9:a-f]*)",
@@ -1126,10 +1130,14 @@ arv_parse_genicam_url (const char *url, gssize url_length,
 
 		l_path = local_tokens[1];
 
+                printf("Path: %s\n", l_path); 
+
 		if (address != NULL)
 			*address = g_ascii_strtoll (local_tokens[2], NULL, 16);
+                        printf("Address: %lu\n", *address); 
 		if (size != NULL)
 			*size = g_ascii_strtoll (local_tokens[3], NULL, 16);
+                        printf("Size: %lu\n", *size); 
 	} else {
 		l_path = tokens[5];
 	}
