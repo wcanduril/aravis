@@ -1283,6 +1283,8 @@ _load_genicam (ArvGvDevice *gv_device, guint32 address, size_t  *size, char **ur
 	arv_parse_genicam_url (filename, -1, &scheme, NULL, &path, NULL, NULL,
 			       &file_address, &file_size);
 
+        printf("Genicam Scheme %s Path %s\n", scheme, path); 
+
         if (scheme != NULL) {
                 if (g_ascii_strcasecmp (scheme, "file") == 0) {
                         gsize len;
