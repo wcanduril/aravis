@@ -1089,7 +1089,7 @@ arv_parse_genicam_url (const char *url, gssize url_length,
 		*size = 0;
 
 	g_return_val_if_fail (url != NULL, FALSE);
-        printf("Debug URL: %s\n, url); 
+        printf("Debug URL: %s\n", url); 
 
 	/* https://tools.ietf.org/html/rfc3986#appendix-B */
 	regex = g_regex_new ("^(([^:\\/?#]+):)?(\\/\\/([^\\/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?",G_REGEX_CASELESS, 0, NULL);
